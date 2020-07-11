@@ -4,8 +4,10 @@ using System.Text;
 
 namespace FormulaGenerator.Source.ParseTrees
 {
-    internal interface INode
+    public interface INode
     {
+        String Type { get; }
+
         INode LeftChild { get; }
         INode RightChild { get; }
 

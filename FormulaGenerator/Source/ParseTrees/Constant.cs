@@ -4,14 +4,25 @@ using System.Text;
 
 namespace FormulaGenerator.Source.ParseTrees
 {
-    internal class Constant : INode
+    public class Constant : INode
     {
+        public String Type => "CONSTANT";
+
         public INode LeftChild => null;
         public INode RightChild => null;
 
-        private double _value = 0;
+        protected double _value = 0;
 
-        public void SetValue(double value) => _value = value;
+        private bool _isChanged = false;
+
+        public void SetValue(double value)
+        {
+            if (_isChanged)
+                return;
+            
+            _value = value;
+            _isChanged = true;
+        }
 
         public double GetValue() => _value;
     }

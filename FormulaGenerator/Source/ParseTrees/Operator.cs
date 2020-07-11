@@ -4,8 +4,10 @@ using System.Text;
 
 namespace FormulaGenerator.Source.ParseTrees
 {
-    internal abstract class Operator : INode
+    public abstract class Operator : INode
     {
+        public String Type => "OPERATOR";
+
         public INode LeftChild { get; set; }
         public INode RightChild { get; set; }
 

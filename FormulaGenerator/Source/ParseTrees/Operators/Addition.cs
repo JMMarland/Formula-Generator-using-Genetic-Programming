@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FormulaGenerator.Source.ParseTrees.Operators
 {
-    internal class Addition : Operator
+    public class Addition : Operator
     {
         public override double GetValue()
         {

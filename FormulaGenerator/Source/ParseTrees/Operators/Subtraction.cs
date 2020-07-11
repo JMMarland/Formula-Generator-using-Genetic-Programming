@@ -4,11 +4,11 @@ using System.Text;
 
 namespace FormulaGenerator.Source.ParseTrees.Operators
 {
-    internal class Subtraction : Operator
+    public class Subtraction : Operator
     {
         public override double GetValue()
         {
-            return LeftChild.GetValue() + RightChild.GetValue();
+            return LeftChild.GetValue() - RightChild.GetValue();
         }
     }
 }
