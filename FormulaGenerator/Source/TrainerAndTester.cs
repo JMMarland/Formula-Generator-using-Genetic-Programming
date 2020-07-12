@@ -9,13 +9,15 @@ namespace FormulaGenerator.Source
     {
         private List<InputOutputInstance> _inputOutputInstances = new List<InputOutputInstance>();
 
+        private Formula _formula = new Formula();
+
         public TrainerAndTester()
         {
         }
 
         public void AddInputOutputInstance(Input input, Output output)
         {
-            _inputOutputInstances.Add(new InputOutputInstance(input, output));
+            AddInputOutputInstance(new InputOutputInstance(input, output));
         }
 
         public void AddInputOutputInstance(InputOutputInstance inputOutputInstance)
@@ -32,6 +34,16 @@ namespace FormulaGenerator.Source
         public InputOutputInstance[] GetInputOutputInstances()
         { 
             return _inputOutputInstances.ToArray();
+        }
+
+        public Formula GetFormula()
+        {
+            return _formula;
+        }
+
+        public void Run(double minAccuracy = 1)
+        {
+
         }
     }
 }
