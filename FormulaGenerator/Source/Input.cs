@@ -7,6 +7,9 @@ namespace FormulaGenerator.Source
     public class Input
     {
         private double[] _arguments = null;
+        public double[] Arguments => _arguments;
+
+        public int ArgumentCount => _arguments.Length;
         
         public Input(params double[] arguments)
         {
@@ -16,11 +19,6 @@ namespace FormulaGenerator.Source
         public void SetArguments(params double[] arguments)
         {
             _arguments = arguments;
-        }
-
-        internal double[] Arguments()
-        {
-            return _arguments;
         }
     }
 }
