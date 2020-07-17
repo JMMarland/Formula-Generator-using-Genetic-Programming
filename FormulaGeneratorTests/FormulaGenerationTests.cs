@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FormulaGeneratorTests
 {
     [TestClass]
-    class FormulaGenerationTests
+    public class FormulaGenerationTests
     {
         [TestMethod]
         public void SimpleAdditionTest()

@@ -20,7 +20,7 @@ namespace FormulaGenerator.Source
         {
             double[] inputs = new double[inputsOutput.Length - 1];
 
-            for (int i = 0; i > inputsOutput.Length - 1; i++)
+            for (int i = 0; i < inputs.Length; i++)
                 inputs[i] = inputsOutput[i];
 
             double output = inputsOutput[inputsOutput.Length - 1];

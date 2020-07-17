@@ -11,7 +11,7 @@ namespace FormulaGenerator.Source.ParseTrees
         public INode LeftChild => null;
         public INode RightChild => null;
 
-        protected double _value = 0;
+        internal double _value = 0;
 
         private bool _isChanged = false;
 

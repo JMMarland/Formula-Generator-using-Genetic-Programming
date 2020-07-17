@@ -95,8 +95,10 @@ namespace FormulaGenerator.Source.ParseTrees
                 if (inputList.Count - i <= 1)
                     isNotFinished = false;
                 else
+                {
                     prevNode = headNode;
                     headNode = null;
+                }
             }
 
             parseTree.AddTreeOfNodes(headNode);
