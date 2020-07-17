@@ -14,7 +14,9 @@ namespace FormulaGenerator.Source.ParseTrees
             Operator[] operators =
                 {
                 new Addition(),
-                new Subtraction()
+                new Subtraction(),
+                new Multiplication(),
+                new Division()
             };
 
             return operators[_random.Next(operators.Length)];
