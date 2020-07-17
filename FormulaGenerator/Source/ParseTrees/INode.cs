@@ -28,9 +28,9 @@ namespace FormulaGenerator.Source.ParseTrees
         INode RightChild { get; }
 
         /// <summary>
-        /// Returns the value that is represented by this <c>INode</c> instance.
+        /// Accesses the value that is represented by this <c>INode</c> instance.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A double value that is represented by this <c>INode</c> instance.</returns>
         double GetValue();
     }
 }
