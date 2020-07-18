@@ -66,5 +66,63 @@ namespace FormulaGenerator.Source.ParseTrees
 
             return true;
         }
+
+        public ParseTree Duplicate()
+        {
+            ParseTree newTree = new ParseTree();
+
+            INode currentNode = _head;
+            INode newHead = null;
+            Stack<INode> prevNodes = new Stack<INode>();
+
+            List<INode> visited = new List<INode>();
+            Stack<INode> nodeStack = new Stack<INode>();
+
+            while (nodeStack.Count != 0 && HasNotBeenVisited(visited, currentNode))
+            {
+                if (currentNode.LeftChild != null && HasNotBeenVisited(visited, currentNode.LeftChild))
+                {
+                    nodeStack.Push(currentNode);
+                    currentNode = currentNode.LeftChild;
+                }
+
+                else if (currentNode.RightChild != null && HasNotBeenVisited(visited, currentNode.RightChild))
+                {
+                    nodeStack.Push(currentNode);
+                    currentNode = currentNode.RightChild;
+                }
+
+                else
+                {
+                    visited.Add(currentNode);
+
+                    if (currentNode.Type == "VARIABLE" || currentNode.Type == "CONSTANT")
+                    {
+                        prevNodes.Push(currentNode);
+                        newHead = currentNode;
+                    }
+
+                    else if (currentNode.Type == "OPERATOR")
+                    {
+                        Operator newOperator = ((Operator)currentNode).Duplicate();
+                        newOperator.RightChild = prevNodes.Pop();
+                        newOperator.LeftChild = prevNodes.Pop();
+                        prevNodes.Push(newOperator);
+                        newHead = newOperator;
+                    }
+
+                    currentNode = nodeStack.Pop();
+                }
+            }
+
+            Console.WriteLine(prevNodes.Count);
+
+            //if (prevNodes.Count != 1)
+            //    throw new Exception();
+
+            newTree.AddTreeOfNodes(newHead);
+
+            return newTree;
+        }
     }
 }

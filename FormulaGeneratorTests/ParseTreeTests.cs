@@ -88,5 +88,38 @@ namespace FormulaGeneratorTests
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void DuplicationTest()
+        {
+            double value1 = 65;
+            double value2 = 34;
+            double value3 = 45;
+
+            Constant const1 = new Constant();
+            Constant const2 = new Constant();
+            Constant const3 = new Constant();
+
+            const1.SetValue(value1);
+            const2.SetValue(value2);
+            const3.SetValue(value3);
+
+            Operator operator1 = new Addition();
+            Operator operator2 = new Division();
+
+            operator1.LeftChild = const1;
+            operator1.RightChild = const2;
+            operator2.LeftChild = operator1;
+            operator2.RightChild = const3;
+
+            ParseTree original = new ParseTree();
+            original.AddTreeOfNodes(operator2);
+            ParseTree duplicate = original.Duplicate();
+
+            double expected = original.Value;
+            double actual = duplicate.Value;
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

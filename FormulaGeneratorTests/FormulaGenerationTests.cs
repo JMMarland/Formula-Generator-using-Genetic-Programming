@@ -254,5 +254,73 @@ namespace FormulaGeneratorTests
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void SimpleOperationMixTest()
+        {
+            TrainerAndTester trainerAndTester = new TrainerAndTester();
+            Random random = new Random();
+
+            int randValueMin = 0;
+            int randValueMax = 30;
+
+            for (int i = 0; i < 20; i++)
+            {
+                double value1 = random.Next(randValueMin, randValueMax);
+                double value2 = random.Next(randValueMin, randValueMax);
+                double value3 = random.Next(randValueMin, randValueMax);
+                double value4 = random.Next(randValueMin, randValueMax);
+                double result = value1 + value2 * value3 / value4;
+
+                trainerAndTester.AddInputOutputInstance(value1, value2, value3, value4, result);
+            }
+
+            trainerAndTester.Run();
+
+            Formula formula = trainerAndTester.GetFormula();
+
+            double testVal1 = 29;
+            double testVal2 = 98;
+            double testVal3 = 67;
+            double testVal4 = 63;
+            double expected = testVal1 + testVal2 * testVal3 / testVal4;
+            double actual = formula.Run(testVal1, testVal2, testVal3, testVal4);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ConstantOperationMixTest()
+        {
+            TrainerAndTester trainerAndTester = new TrainerAndTester();
+            Random random = new Random();
+
+            int randValueMin = 0;
+            int randValueMax = 30;
+
+            double constant = random.Next(randValueMin, randValueMax);
+
+            for (int i = 0; i < 20; i++)
+            {
+                double value1 = random.Next(randValueMin, randValueMax);
+                double value2 = random.Next(randValueMin, randValueMax);
+                double value3 = random.Next(randValueMin, randValueMax);
+                double result = (value1 / value2 * value3) + constant;
+
+                trainerAndTester.AddInputOutputInstance(value1, value2, value3, result);
+            }
+
+            trainerAndTester.Run();
+
+            Formula formula = trainerAndTester.GetFormula();
+
+            double testVal1 = 29;
+            double testVal2 = 98;
+            double testVal3 = 67;
+            double expected = (testVal1 / testVal2 * testVal3) + constant;
+            double actual = formula.Run(testVal1, testVal2, testVal3);
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

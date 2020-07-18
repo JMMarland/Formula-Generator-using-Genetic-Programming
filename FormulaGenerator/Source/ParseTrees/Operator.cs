@@ -34,5 +34,12 @@ namespace FormulaGenerator.Source.ParseTrees
         /// </summary>
         /// <returns>A double value that is represented by this <c>Operator</c> instance.</returns>
         public abstract double GetValue();
+
+        /// <summary>
+        /// Duplicates the <c>Operator</c> instance and creates a new instance
+        /// with the same attributes and members contained.
+        /// </summary>
+        /// <returns></returns>
+        public abstract Operator Duplicate();
     }
 }
